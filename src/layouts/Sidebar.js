@@ -74,7 +74,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, route, data, loading }) => {
                   className={`w-full py-4 ${
                     route.includes("users") && "bg-yellow-400"
                   }`}
-                  label="Users/Organizations"
+                  label="Users"
                 />
               </Link>
             </div>

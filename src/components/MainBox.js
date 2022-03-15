@@ -6,13 +6,9 @@ const MainBox = (props) => {
       <motion.div
         onClick={props.onClick}
         whileHover={{ scale: 1.01 }}
-        className="rounded-xl overflow-hidden border-2 border-black hover:bg-yellow-400 duration-300 cursor-pointer"
+        className={`${props.className} font-semibold px-4 py-4 tracking-wide border border-black text-black transition-colors duration-200 transform rounded-md focus:outline-none`}
       >
-        <div className="px-6 md:py-24 py-12">
-          <div className="font-semibold text-xl text-center">
-            {props.children}
-          </div>
-        </div>
+        {props.children}
       </motion.div>
     </>
   );

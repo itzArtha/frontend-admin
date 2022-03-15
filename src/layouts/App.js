@@ -25,7 +25,7 @@ const App = () => {
       case "users":
         return {
           view: <Users />,
-          text: "Users/Organization",
+          text: "Users",
         };
       case "withdrawals":
         return {
