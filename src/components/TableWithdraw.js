@@ -2,7 +2,7 @@ import CurrencyFormat from "react-currency-format";
 import moment from "moment";
 import MainButton from "./MainButton";
 
-const TableWithdraw = ({ data }) => {
+const TableWithdraw = ({ data, callback }) => {
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -33,6 +33,12 @@ const TableWithdraw = ({ data }) => {
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
+                    Kode Bank
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Jumlah
                   </th>
                   <th
@@ -45,35 +51,44 @@ const TableWithdraw = ({ data }) => {
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Tanggal Penarikan
-                  </th>{" "}
+                    Action
+                  </th>
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  />
+                  >
+                    Tanggal Penarikan
+                  </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {data.map((person) => (
-                  <tr key={person.id}>
+                  <tr key={person.withdrawId}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="ml-4">
                         <div className="text-sm font-medium text-gray-900">
-                          {person.holder}
+                          {person.accountName}
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="ml-4">
                         <div className="text-sm font-medium text-gray-900">
-                          {person.account}
+                          {person.accountId}
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="ml-4">
                         <div className="text-sm font-medium text-gray-900">
-                          {person.channel}
+                          {person.bankName}
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="ml-4">
+                        <div className="text-sm font-medium text-gray-900">
+                          {person.bankCode}
                         </div>
                       </div>
                     </td>
@@ -100,11 +115,20 @@ const TableWithdraw = ({ data }) => {
                         {person.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {moment(person.created_at).format("lll")}
-                    </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex gap-2">
-                      <MainButton label={"Confirm"} />
+                      {person.status === "pending" ? (
+                        <MainButton
+                          onClick={() => {
+                            callback(person.withdrawId);
+                          }}
+                          label={"Confirm"}
+                        />
+                      ) : (
+                        ""
+                      )}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {moment(person.withdrawDate).format("lll")}
                     </td>
                   </tr>
                 ))}

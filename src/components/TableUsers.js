@@ -60,10 +60,10 @@ const TableUsers = ({ data }) => {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {data.map((person) => (
-                  <tr key={person.id}>
+                  <tr key={person.userId}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">
-                        {person.id}
+                        {person.userId}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap cursor-pointer">
@@ -71,7 +71,7 @@ const TableUsers = ({ data }) => {
                         <div className="flex-shrink-0 h-10 w-10">
                           <img
                             className="h-10 w-10 rounded-full"
-                            src={person.photo_url}
+                            src={person.photoUrl}
                             alt=""
                           />
                         </div>
@@ -86,7 +86,7 @@ const TableUsers = ({ data }) => {
                       <div className="flex items-center">
                         <div className="ml-4">
                           <div className="text-sm font-medium text-gray-900">
-                            {person.name}
+                            {person.username}
                           </div>
                         </div>
                       </div>
@@ -98,37 +98,22 @@ const TableUsers = ({ data }) => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">
-                        {JSON.parse(person.data).hp}
+                        {person.hp}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">
-                        {JSON.parse(person.data).instansi}
+                        {person.sex}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">
-                        {JSON.parse(person.data).sex === 0 ? "Wanita" : "Pria"}
+                        {person.roles}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">
-                        {JSON.parse(person.data).ktp}
-                      </div>
-                    </td>{" "}
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900">
-                        {JSON.parse(person.data).ktp}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900">
-                        {person.ticket}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900">
-                        {moment(person.created_at).format("lll")}
+                        {moment(person.joinAt).format("lll")}
                       </div>
                     </td>
                   </tr>

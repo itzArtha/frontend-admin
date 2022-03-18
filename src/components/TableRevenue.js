@@ -37,13 +37,13 @@ const TableRevenue = ({ data }) => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {data.map((person) => (
-                  <tr key={person.id}>
+                {data.map((person, i) => (
+                  <tr key={i}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="ml-4">
                           <div className="text-sm font-medium text-gray-900">
-                            {person.title}
+                            {person.transactionName}
                           </div>
                         </div>
                       </div>
@@ -64,7 +64,7 @@ const TableRevenue = ({ data }) => {
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {moment(person.created_at).format("lll")}
+                      {moment(person.transactionDate).format("lll")}
                     </td>
                   </tr>
                 ))}
