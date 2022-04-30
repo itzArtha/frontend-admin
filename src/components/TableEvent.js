@@ -110,8 +110,8 @@ const TableEvent = ({ callback, data }) => {
                           callback(item.eventId);
                         }}
                       >
-                        <p className="text-indigo-600 hover:text-indigo-900 cursor-pointer">
-                          Draft
+                        <p className="text-red-600 hover:text-red-900 cursor-pointer">
+                          Suspend
                         </p>
                       </td>
                     )}
