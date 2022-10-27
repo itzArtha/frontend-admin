@@ -117,6 +117,19 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, route, data, loading }) => {
                 />
               </Link>
             </div>
+            <div className="mb-2 last:mb-0">
+              <Link to="broadcast">
+                <SecondaryButton
+                  onClick={(e) => {
+                    handleRoute(e);
+                  }}
+                  className={`w-full py-4 ${
+                    route.includes("broadcast") && "bg-yellow-400"
+                  }`}
+                  label="Broadcast"
+                />
+              </Link>
+            </div>
           </nav>
 
           <div className="flex items-center justify-center px-4 -mx-2">

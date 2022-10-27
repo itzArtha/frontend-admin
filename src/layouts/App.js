@@ -7,6 +7,7 @@ import Users from "./components/Users";
 import Withdrawals from "./components/Withdrawals";
 import Revenue from "./components/Revenue";
 import Event from "./components/Event";
+import Broadcast from "./components/Broadcast";
 
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -41,6 +42,11 @@ const App = () => {
         return {
           view: <Event />,
           text: "Event",
+        };
+      case "broadcast":
+        return {
+          view: <Broadcast />,
+          text: "Broadcast",
         };
       default:
         window.location.href = `/dashboard`;

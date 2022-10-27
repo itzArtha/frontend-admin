@@ -39,7 +39,19 @@ const TableWithdraw = ({ data, callback }) => {
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
+                    Balance Before Withdraw
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Jumlah
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Balance After Withdraw
                   </th>
                   <th
                     scope="col"
@@ -95,7 +107,27 @@ const TableWithdraw = ({ data, callback }) => {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
                         <CurrencyFormat
+                          value={person.balanceBeforeWd}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={"Rp"}
+                        />
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">
+                        <CurrencyFormat
                           value={person.amount}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={"Rp"}
+                        />
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">
+                        <CurrencyFormat
+                          value={person.balanceAfterWd}
                           displayType={"text"}
                           thousandSeparator={true}
                           prefix={"Rp"}

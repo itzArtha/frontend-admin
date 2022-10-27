@@ -31,6 +31,36 @@ const TableEvent = ({ callback, data }) => {
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
+                    KTP PIC
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Surat Izin
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Bukti Booking
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    WA
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Instagram
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Waktu
                   </th>
                   <th
@@ -79,6 +109,27 @@ const TableEvent = ({ callback, data }) => {
                       <div className="text-sm text-gray-500">{item.format}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">{item.ktp}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">{item.izin}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">
+                        {item.booking}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">
+                        {item.whatsapp}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">
+                        {item.instagram}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
                         <span className="font-semibold">Start at</span>{" "}
                         {moment(item.startDate).format("lll")}
@@ -101,20 +152,36 @@ const TableEvent = ({ callback, data }) => {
                         {item.status}
                       </span>
                     </td>
-                    {item.status === "draft" ? (
-                      ""
-                    ) : (
-                      <td
-                        className="px-3 py-4 whitespace-nowrap text-right text-sm font-medium"
-                        onClick={() => {
-                          callback(item.eventId);
-                        }}
-                      >
-                        <p className="text-red-600 hover:text-red-900 cursor-pointer">
+                    <td className="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      {item.status === "draft" ? (
+                        ""
+                      ) : (
+                        <p
+                          className="text-red-600 hover:text-red-900 cursor-pointer"
+                          onClick={() => {
+                            callback(item.eventId, "suspend");
+                          }}
+                        >
                           Suspend
                         </p>
-                      </td>
-                    )}
+                      )}
+                      <p
+                        className="text-red-600 hover:text-red-900 cursor-pointer"
+                        onClick={() => {
+                          callback(item.eventId, "verify");
+                        }}
+                      >
+                        Verifikasi
+                      </p>
+                      <p
+                        className="text-red-600 hover:text-red-900 cursor-pointer"
+                        onClick={() => {
+                          callback(item.eventId, "reject");
+                        }}
+                      >
+                        Tolak
+                      </p>
+                    </td>
                   </tr>
                 ))}
               </tbody>
