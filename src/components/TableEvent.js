@@ -153,18 +153,14 @@ const TableEvent = ({ callback, data }) => {
                       </span>
                     </td>
                     <td className="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      {item.status === "draft" ? (
-                        ""
-                      ) : (
-                        <p
-                          className="text-red-600 hover:text-red-900 cursor-pointer"
-                          onClick={() => {
-                            callback(item.eventId, "suspend");
-                          }}
-                        >
-                          Suspend
-                        </p>
-                      )}
+                      <p
+                        className="text-red-600 hover:text-red-900 cursor-pointer"
+                        onClick={() => {
+                          callback(item.eventId, "suspend");
+                        }}
+                      >
+                        Suspend
+                      </p>
                       <p
                         className="text-red-600 hover:text-red-900 cursor-pointer"
                         onClick={() => {

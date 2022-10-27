@@ -9,8 +9,8 @@ const Event = () => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
 
-  const callback = useCallback((data) => {
-    handleSetStatus(data);
+  const callback = useCallback((data, status) => {
+    handleSetStatus(data, status);
   }, []);
 
   useEffect(() => {
@@ -28,10 +28,10 @@ const Event = () => {
       });
   };
 
-  const handleSetStatus = (data) => {
+  const handleSetStatus = (data, status) => {
     apiClient()
       .put("/admin/events?eventId=" + data, {
-        status: "draft",
+        status: status,
       })
       .then((r) => {
         toast("Mantap kawan!", {
