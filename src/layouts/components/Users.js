@@ -8,22 +8,27 @@ const Users = () => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   useEffect(() => {
-    const fetchData = () => {
-      apiClient()
-        .get("/admin/users")
-        .then((r) => {
-          setData(r.data);
-        })
-        .catch((err) => {
-          isAdmin(err.response.status);
-        });
-    };
-    fetchData();
+    fetchData(10, 1);
   }, []);
 
-  const filteredUsers = data.filter((user) => {
-    return user.name.toLowerCase().includes(search.toLowerCase());
-  });
+    const fetchData = (perPage, page, search = '') => {
+        apiClient()
+            .get(`/admin/users?page=${page}`)
+            .then((r) => {
+                setData(r.data);
+            })
+            .catch((err) => {
+                isAdmin(err.response.status);
+            });
+    };
+
+    const handlePageChange = (page, perPage) => {
+        fetchData(perPage, page)
+    }
+
+    const handlePerRowsChange = async (newPerPage, page) => {
+        fetchData(newPerPage, page)
+    }
 
   return (
     <div>
@@ -36,7 +41,7 @@ const Users = () => {
           placeholder={"Cari users"}
         />
       </div>
-      <TableUsers data={filteredUsers} />
+      <TableUsers changePage={handlePageChange} changePerPage={handlePerRowsChange} data={data} />
     </div>
   );
 };

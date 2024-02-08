@@ -93,67 +93,8 @@ const Dashboard = () => {
             </div>
           </MainBox>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 my-8">
-          <div className="flex justify-center">
-            <div className="w-full mb-8">
-              <Doughnut
-                data={usersOrg}
-                options={{
-                  responsive: true,
-                  plugins: {
-                    title: {
-                      display: true,
-                      text: "Data Users",
-                    },
-                    legend: {
-                      display: false,
-                      position: "bottom",
-                    },
-                  },
-                }}
-              />
-            </div>
-          </div>
-          <div className="flex justify-center">
-            <div className="w-full mb-8">
-              <Pie
-                data={TransacData}
-                options={{
-                  responsive: true,
-                  plugins: {
-                    title: {
-                      display: true,
-                      text: "Data Transaksi",
-                    },
-                    legend: {
-                      display: false,
-                      position: "bottom",
-                    },
-                  },
-                }}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-center">
-          <div className="w-full mb-8">
-            <Bar
-              data={datas}
-              options={{
-                responsive: true,
-                plugins: {
-                  title: {
-                    display: true,
-                    text: "Data Pendapatan Harian",
-                  },
-                  legend: {
-                    display: false,
-                    position: "bottom",
-                  },
-                },
-              }}
-            />
-          </div>
+        <div className={"text-center mt-48"}>
+          Gak isi chart - chart ga jelas web lemot
         </div>
       </div>
     </>

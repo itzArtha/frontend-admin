@@ -17,6 +17,12 @@ const TableRevenue = ({ data }) => {
                     Nama Transaksi
                   </th>
                   <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Nama Event
+                  </th>
+                  <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
@@ -44,6 +50,15 @@ const TableRevenue = ({ data }) => {
                         <div className="ml-4">
                           <div className="text-sm font-medium text-gray-900">
                             {person.transactionName}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center">
+                        <div className="ml-4">
+                          <div className="text-sm font-medium text-gray-900">
+                            {person.eventName}
                           </div>
                         </div>
                       </div>
