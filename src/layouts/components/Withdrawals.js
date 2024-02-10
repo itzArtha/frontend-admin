@@ -6,14 +6,14 @@ import toast, { Toaster } from "react-hot-toast";
 import isAdmin from "../../components/services/isAdmin";
 const Withdrawals = () => {
   const [data, setData] = useState([]);
-  const [search, setSearch] = useState("");
+  const [changed, setChanged] = useState(false);
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(10, 1);
+  }, [changed]);
 
-  const fetchData = () => {
+  const fetchData = (perPage, page) => {
     apiClient()
-      .get("/admin/withdraws")
+      .get(`/admin/withdraws?perPage=${perPage}&page=${page}`)
       .then((r) => {
         setData(r.data);
       })
@@ -21,13 +21,18 @@ const Withdrawals = () => {
         isAdmin(err.response.status);
       });
   };
-  const filteredWithdraws = data.filter((account) => {
-    return account.accountName.toLowerCase().includes(search.toLowerCase());
-  });
 
   const callback = useCallback((data) => {
     handleConfirmation(data);
   }, []);
+
+  const handlePageChange = (page, perPage) => {
+    fetchData(perPage, page);
+  };
+
+  const handlePerRowsChange = async (newPerPage, page) => {
+    fetchData(newPerPage, page);
+  };
 
   const handleConfirmation = (data) => {
     apiClient()
@@ -42,24 +47,20 @@ const Withdrawals = () => {
             color: "#fff",
           },
         });
-        fetchData();
+        setChanged(true);
       });
   };
 
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
-      <div className={"md:w-1/3 w-full ml-auto my-4"}>
-        <MainInput
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
-          value={search}
-          placeholder={"Cari penarikan"}
-        />
-      </div>
       <div>
-        <TableWithdraw data={filteredWithdraws} callback={callback} />
+        <TableWithdraw
+          changePage={handlePageChange}
+          changePerPage={handlePerRowsChange}
+          data={data}
+          callback={callback}
+        />
       </div>
     </>
   );
