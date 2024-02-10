@@ -9,14 +9,12 @@ import isAdmin from "../../components/services/isAdmin";
 const Revenue = () => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState({});
-  const [dataTable, setDataTable] = useState([]);
   useEffect(() => {
     const fetchData = () => {
       apiClient()
         .get("/admin/revenues")
         .then((r) => {
           setData(r.data);
-          setDataTable(r.data.data);
         })
         .catch((err) => {
           isAdmin(err.response.status);
@@ -24,12 +22,6 @@ const Revenue = () => {
     };
     fetchData();
   }, []);
-
-  const filteredRevenues = dataTable.filter((transaction) => {
-    return transaction.transactionName
-      .toLowerCase()
-      .includes(search.toLowerCase());
-  });
 
   return (
     <div>
@@ -56,18 +48,6 @@ const Revenue = () => {
           </div>
           <div className="font-light text-lg pt-4">Total pendapatan bersih</div>
         </MainBox>
-      </div>
-      <div className={"md:w-1/3 w-full ml-auto mt-12 mb-4"}>
-        <MainInput
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
-          value={search}
-          placeholder={"Cari pendapatan"}
-        />
-      </div>
-      <div>
-        <TableRevenue data={filteredRevenues} />
       </div>
     </div>
   );

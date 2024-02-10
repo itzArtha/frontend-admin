@@ -45,10 +45,6 @@ const Event = () => {
       });
   };
 
-  const filteredEvents = data.filter((event) => {
-    return event.title.toLowerCase().includes(search.toLowerCase());
-  });
-
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
@@ -62,7 +58,7 @@ const Event = () => {
         />
       </div>
       <div>
-        <TableEvent data={filteredEvents} callback={callback} />
+        <TableEvent data={data} callback={callback} />
       </div>
     </>
   );
