@@ -115,7 +115,7 @@ const TableEvent = ({ callback, data, changePage, changePerPage }) => {
 
   const ExpandedComponent = ({ data }) => (
     <div className={"p-4"}>
-      <div className={"text-center mt-2"}>
+      <div className={"md:text-center mt-2"}>
         {data.ktp ? (
           <SecondaryButton
             label={"Lihat KTP"}
@@ -144,7 +144,7 @@ const TableEvent = ({ callback, data, changePage, changePerPage }) => {
           />
         ) : null}
       </div>
-      <div className={"text-center mt-2"}>
+      <div className={"md:text-center mt-2"}>
         {data.doc_complete.status ? (
           <MainButton
             label={"Konfirmasi"}

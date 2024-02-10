@@ -66,7 +66,7 @@ const Dashboard = () => {
             <div className="font-light text-lg text-right pt-2">Users</div>
           </MainBox>
           <MainBox className="bg-yellow-400 hover:bg-yellow-300">
-            <div className="font-semibold text-3xl pb-2">
+            <div className="font-semibold md:text-3xl text-xl pb-2">
               {
                 <CurrencyFormat
                   value={data.totalRevenue}

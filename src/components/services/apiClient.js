@@ -2,8 +2,8 @@ import axios from "axios";
 
 const apiClient = () => {
   const instance = axios.create({
-    // baseURL: "http://localhost:8000/api/v1",
-    baseURL: "https://api.tokoevent.id/api/v1",
+    baseURL: "http://localhost:8000/api/v1",
+    // baseURL: "https://api.tokoevent.id/api/v1",
     headers: {
       "Content-Type": "application/json",
     },
