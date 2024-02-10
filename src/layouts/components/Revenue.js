@@ -49,6 +49,9 @@ const Revenue = () => {
           <div className="font-light text-lg pt-4">Total pendapatan bersih</div>
         </MainBox>
       </div>
+      <div className={"text-center mt-48"}>
+        Gak isi list pendapatan ga jelas web lemot
+      </div>
     </div>
   );
 };

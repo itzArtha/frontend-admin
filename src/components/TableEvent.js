@@ -1,6 +1,4 @@
 import moment from "moment";
-import MainBox from "./MainBox";
-import CurrencyFormat from "react-currency-format";
 import MainButton from "./MainButton";
 import DataTable from "react-data-table-component";
 import { useEffect, useState } from "react";
@@ -74,7 +72,7 @@ const TableEvent = ({ callback, data, changePage, changePerPage }) => {
     },
     {
       name: "Kelengkapan",
-      selector: (row) => row.doc_complete,
+      selector: (row) => row.doc_complete.label,
       sortable: true,
     },
     {
@@ -87,14 +85,17 @@ const TableEvent = ({ callback, data, changePage, changePerPage }) => {
 
   const items = events.map((event, key) => {
     return {
-      id: event.eventId,
+      id: event.id,
       event_url: event.event_url,
       owner: event.owner,
       title: {
         label: event.title,
         banner_url: event.banner_url,
       },
-      doc_complete: event.doc_complete,
+      doc_complete: {
+        status: event.doc_complete.status,
+        label: event.doc_complete.label,
+      },
       location: {
         label: event.location,
         is_online: event.is_online,
@@ -115,48 +116,56 @@ const TableEvent = ({ callback, data, changePage, changePerPage }) => {
   const ExpandedComponent = ({ data }) => (
     <div className={"p-4"}>
       <div className={"text-center mt-2"}>
-        <SecondaryButton
-          label={"Lihat KTP"}
-          className={"m-1"}
-          onClick={() => {
-            return window.open(data.ktp);
-          }}
-        />
-        <SecondaryButton
-          label={"Lihat Surat Izin"}
-          className={"m-1"}
-          onClick={() => {
-            return window.open(data.izin);
-          }}
-        />
-        <SecondaryButton
-          label={"Lihat Bukti Booking GS"}
-          className={"m-1"}
-          onClick={() => {
-            return window.open(data.booking);
-          }}
-        />
+        {data.ktp ? (
+          <SecondaryButton
+            label={"Lihat KTP"}
+            className={"m-1"}
+            onClick={() => {
+              return window.open(data.ktp);
+            }}
+          />
+        ) : null}
+        {data.izin ? (
+          <SecondaryButton
+            label={"Lihat Surat Izin"}
+            className={"m-1"}
+            onClick={() => {
+              return window.open(data.izin);
+            }}
+          />
+        ) : null}
+        {data.booking ? (
+          <SecondaryButton
+            label={"Lihat Bukti Booking GS"}
+            className={"m-1"}
+            onClick={() => {
+              return window.open(data.booking);
+            }}
+          />
+        ) : null}
       </div>
       <div className={"text-center mt-2"}>
-        <MainButton
-          label={"Konfirmasi"}
-          className={"m-1"}
-          onClick={() => {
-            return window.open(`/explore/event/${data.slug}`);
-          }}
-        />
+        {data.doc_complete.status ? (
+          <MainButton
+            label={"Konfirmasi"}
+            className={"m-1"}
+            onClick={() => {
+              callback(data.id, "verify");
+            }}
+          />
+        ) : null}
         <MainButton
           label={"Tolak"}
           className={"m-1"}
           onClick={() => {
-            return window.open(`/admin/event/${data.slug}?tab=peserta`);
+            callback(data.id, "reject");
           }}
         />
         <MainButton
           label={"Suspend"}
           className={"m-1"}
           onClick={() => {
-            return window.open(`/admin/event/${data.slug}?tab=penjualan`);
+            callback(data.id, "suspend");
           }}
         />
       </div>
