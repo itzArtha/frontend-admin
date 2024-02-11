@@ -3,6 +3,7 @@ import moment from "moment";
 import MainButton from "./MainButton";
 import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
+import toast from "react-hot-toast";
 
 const TableWithdraw = ({ data, callback, changePage, changePerPage }) => {
   const [totalRows, setTotalRows] = useState(0);
@@ -40,13 +41,21 @@ const TableWithdraw = ({ data, callback, changePage, changePerPage }) => {
     {
       name: "Akun Bank",
       selector: (row) => row.account,
+      width: "240px",
       format: (row) => (
         <div className="flex items-center">
           <div className="ml-4">
             <div className="text-sm font-medium text-gray-900">
               {row.account.name}
             </div>
-            <div className="text-sm text-gray-500">{row.account.no}</div>
+            <div
+              className="text-sm text-gray-500 cursor-pointer"
+              onClick={() => {
+                copyTextToClipboard(row.account.no);
+              }}
+            >
+              {row.account.no} <i className={"far fa-clipboard"}></i>
+            </div>
           </div>
         </div>
       ),
@@ -138,6 +147,17 @@ const TableWithdraw = ({ data, callback, changePage, changePerPage }) => {
   const handlePerRowsChange = async (newPerPage, page) => {
     await changePerPage(newPerPage, page);
     setPerPage(newPerPage);
+  };
+
+  const copyTextToClipboard = (textToCopy) => {
+    navigator.clipboard.writeText(textToCopy);
+    toast("No. Rekening Berhasil Disalin", {
+      icon: "👏",
+      style: {
+        background: "#02a231",
+        color: "#fff",
+      },
+    });
   };
 
   return (
