@@ -3,6 +3,7 @@ import MainButton from "./MainButton";
 import DataTable from "react-data-table-component";
 import { useEffect, useState } from "react";
 import SecondaryButton from "./SecondaryButton";
+import toast from "react-hot-toast";
 
 const TableEvent = ({ callback, data, changePage, changePerPage }) => {
   const [totalRows, setTotalRows] = useState(0);
