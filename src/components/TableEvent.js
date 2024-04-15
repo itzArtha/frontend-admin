@@ -47,6 +47,27 @@ const TableEvent = ({ callback, data, changePage, changePerPage }) => {
       ),
     },
     {
+      name: "Kontak",
+      selector: (row) => row.location,
+      format: (item) => (
+        <div>
+          <div className="text-sm text-gray-900" onClick={() => {
+            navigator.clipboard.writeText(item.contact.whatsapp)
+            toast("Berhasil disalin!", {
+              icon: "☕",
+              style: {
+                background: "#02a231",
+                color: "#fff",
+              },
+            });
+          }}>{item.contact.whatsapp}</div>
+          <div className="text-sm text-gray-500">
+            {item.contact.instagram}
+          </div>
+        </div>
+      ),
+    },
+    {
       name: "Lokasi",
       selector: (row) => row.location,
       format: (item) => (
@@ -91,6 +112,10 @@ const TableEvent = ({ callback, data, changePage, changePerPage }) => {
       title: {
         label: event.title,
         banner_url: event.banner_url,
+      },
+      contact: {
+        whatsapp: event.whatsapp,
+        instagram: event.instagram,
       },
       doc_complete: {
         status: event.doc_complete.status,
