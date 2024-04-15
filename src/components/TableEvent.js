@@ -49,7 +49,7 @@ const TableEvent = ({ callback, data, changePage, changePerPage }) => {
     },
     {
       name: "Kontak",
-      selector: (row) => row.location,
+      selector: (row) => row.contact,
       format: (item) => (
         <div>
           <div className="text-sm text-gray-900" onClick={() => {
