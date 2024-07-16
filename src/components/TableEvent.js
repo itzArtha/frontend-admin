@@ -81,6 +81,16 @@ const TableEvent = ({ callback, data, changePage, changePerPage }) => {
       ),
     },
     {
+      name: "Statistik",
+      selector: (row) => row.statistic,
+      format: (item) => (
+        <div>
+          <div className="text-sm text-gray-900">Balance: {item.statistic.balance}</div>
+          <div className="text-sm text-gray-500">Participants: {item.statistic.participants}</div>
+        </div>
+      ),
+    },
+    {
       name: "Status",
       selector: (row) => row.status,
       sortable: true,
@@ -117,6 +127,10 @@ const TableEvent = ({ callback, data, changePage, changePerPage }) => {
       contact: {
         whatsapp: event.whatsapp,
         instagram: event.instagram,
+      },
+      statistic: {
+        balance: event.balance,
+        participants: event.participants,
       },
       doc_complete: {
         status: event.doc_complete.status,
